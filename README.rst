@@ -1,5 +1,5 @@
 =============================
-uspec
+Uspec
 =============================
 
 This is an ultra fast spectroscopy simulator that generates realistic observed spectra for a user-specified instrument. The simulator is set up to model data taken in a spectropic survey. 
