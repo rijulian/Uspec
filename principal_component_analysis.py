@@ -103,7 +103,7 @@ def plot_results(ThisPCA, x_val, X, num_gals, what, weights=None, ncomp=1):
     ax[1, 0].set_ylabel('proportion of total variance')
 
     fig.suptitle(ThisPCA.__name__ + ' of ' + str(num_gals) + ' CMASS cut galaxies', fontsize=16)
-    plt.savefig("plots/%s/PCA_%s.pdf"%(what,what))
+    plt.savefig("%s/PCA_%s.pdf"%(what,what))
     plt.show()
 
     plt.figure()
@@ -111,7 +111,7 @@ def plot_results(ThisPCA, x_val, X, num_gals, what, weights=None, ncomp=1):
     plt.plot(x_val, Y[ran_num].T, label='Reconstructed with PCA', lw=0.5)
     plt.ylim([-2, 5])
     plt.legend(loc='best')
-    plt.savefig("plots/%s/PCA_%s_compare.pdf"%(what,what))
+    plt.savefig("%s/PCA_%s_compare.pdf"%(what,what))
     plt.show()
 
     plt.figure()
@@ -120,5 +120,5 @@ def plot_results(ThisPCA, x_val, X, num_gals, what, weights=None, ncomp=1):
     plt.legend(loc='best')
     plt.xlabel('$\lambda \ [\AA]$')
     plt.title('Principal vectors')
-    plt.savefig("plots/%s/PC_%s.pdf"%(what,what))
+    plt.savefig("%s/PC_%s.pdf"%(what,what))
     plt.show()
