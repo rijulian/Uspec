@@ -32,8 +32,6 @@ def get_plate_id():
     data_photo = photo_data[1].data
     cmass_mask = np.in1d(data_spec['specObjID'], data_photo['specObjID'])
     spec_cmass = data_spec[cmass_mask]
-    mag_i = data_spec['petroMag_i'][cmass_mask]
-    mag_r = data_spec['petroMag_r'][cmass_mask]
 
 
     # load SDSS spZbest catalog
@@ -64,42 +62,15 @@ def get_plate_id():
     pl_num[9][0] = int(7111)
     pl_num[9][1] = int(56741)
     
-    '''
-    #add another eight plates, if needed
-    pl_num[10][0] = int(3760)
-    pl_num[10][1] = int(55268)
-    pl_num[11][0] = int(4034)
-    pl_num[11][1] = int(55635)
-    pl_num[12][0] = int(4998)
-    pl_num[12][1] = int(55722)
-    pl_num[13][0] = int(5355)
-    pl_num[13][1] = int(56009)
-    pl_num[14][0] = int(5899)
-    pl_num[14][1] = int(56038)
-    pl_num[15][0] = int(6303)
-    pl_num[15][1] = int(56539)
-    pl_num[16][0] = int(6618)
-    pl_num[16][1] = int(56401)
-    pl_num[17][0] = int(6837)
-    pl_num[17][1] = int(56442)
-    '''
 
-    # compare the galaxy IDs of the CMASS galaxies with the ones in the spZbest files and get the corresponding
-    # redshifts and magnitudes
+    # compare the galaxy IDs of the CMASS galaxies with the ones in the spZbest files
     plate_mask = {}
-    z_plate = []
-    mag_plate = []
-    magr_plate = []
 
     for idx in range(len(pl_num)):
         sdss_spec_spzbest = 'uspec/data/DR13/spZbest-%s-%s.fits'%(int(pl_num[idx][0]),int(pl_num[idx][1]))
         spZbest_plate = aif.open(sdss_spec_spzbest)
         data_spZbest = spZbest_plate[1].data
         plate_mask[idx] = np.in1d(data_spZbest['specObjID'], spec_cmass['specObjID'])
-        plate_mask_mag = np.in1d(spec_cmass['specObjID'], data_spZbest['specObjID'])
-        z_plate.append(data_spZbest['Z'][plate_mask[idx]])
-        mag_plate.append(mag_i[plate_mask_mag])
-        magr_plate.append(mag_r[plate_mask_mag])
     
-    return plate_mask, z_plate, mag_plate, magr_plate
+    return plate_mask
     
