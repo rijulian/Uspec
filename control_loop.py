@@ -148,13 +148,13 @@ for i in range(len(theta_0)):
     moments = np.array([abcpmc.weighted_avg_and_std(pool.thetas[:,i], pool.ws, axis=0) for pool in pools])
     plt.errorbar(range(runs), moments[:, 0], moments[:, 1],label='%s parameter'%i)
 plt.xlim([-.5, runs])
-plt.savefig('plots/values.pdf')
+plt.savefig('values.pdf')
 
 import corner
 plt.figure()
 samples = np.vstack([pool.thetas for pool in pools])
 corner.corner(samples)
-plt.savefig('plots/values2.pdf')
+plt.savefig('values2.pdf')
 
 sns.set_style("white")
 np.random.seed()
@@ -162,7 +162,7 @@ np.random.seed()
 plt.figure()
 distances = np.array([pool.dists for pool in pools]).flatten()
 sns.distplot(distances, axlabel="distance")
-plt.savefig('plots/distances.pdf')
+plt.savefig('distances.pdf')
 
 plt.figure()
 eps_values = np.array([pool.eps for pool in pools])
@@ -170,7 +170,7 @@ plt.plot(eps_values, label=r"$\epsilon$ values")
 plt.xlabel("Iteration")
 plt.ylabel(r"$\epsilon$")
 plt.legend(loc="best")
-plt.savefig('plots/epsilon.pdf')
+plt.savefig('epsilon.pdf')
 
 plt.figure()
 acc_ratios = np.array([pool.ratio for pool in pools])
@@ -179,7 +179,7 @@ plt.ylim([0, 1])
 plt.xlabel("Iteration")
 plt.ylabel("Acceptance ratio")
 plt.legend(loc="best")
-plt.savefig('plots/alpha.pdf')
+plt.savefig('alpha.pdf')
 
 hdu_primary = aif.PrimaryHDU()
 cols = aif.ColDefs([
