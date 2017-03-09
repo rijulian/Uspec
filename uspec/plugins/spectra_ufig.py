@@ -10,8 +10,6 @@ from __future__ import print_function, division, absolute_import, unicode_litera
 import numpy as np
 
 
-
-
 class Plugin(object):
     
     def __init__(self, ctx):
