@@ -115,7 +115,7 @@ class Plugin(BasePlugin):
         #dssync = DarkSkySync()
         
         # ufig catalog
-        ufig_cat = aif.getdata('uspec/data/catalog/ufig_cmass_cat.fits')
+        ufig_cat = aif.getdata('uspec/data/ufig_cmass_cat.fits')
         
         # kcorrect
         kcorrect_template = aif.open('uspec/data/k_nmf_derived.newdefault.fits', memmap=True)
@@ -144,11 +144,11 @@ class Plugin(BasePlugin):
         par.templates_v0 = np.array(kcorrect_template[5].data, dtype='float32')
         
         # spectroscopic transmission curve sdss
-        par.sdss_throughput_filename = 'uspec/data/throughput/eff_sdss.fits'
+        par.sdss_throughput_filename = 'uspec/data/eff_sdss.fits'
         self.read_sdss_throughput(par.lam, par.sdss_throughput_filename)
         
         # sdss sky
-        sdss_sky_filename = 'uspec/data/DR13/spPlate-4412-55912.fits'
+        sdss_sky_filename = 'uspec/data/spPlate-4412-55912.fits'
         self.read_sdss_sky(par.lam, sdss_sky_filename)
         
         # extinction
@@ -172,9 +172,9 @@ class Plugin(BasePlugin):
 
 
         #control loop parameters
-        par.rn = 1.2391  #abs(par.theta[0])          #readnoise control constant multiply in readnoise
-        par.tr = 0.9364  #abs(par.theta[1])          #throughput control constant (maybe shape) multiply in get_transmission_gal
-        par.st = 1.2152  #abs(par.theta[2])          #throughput control constant (maybe shape) multiply in sky_photons
+        par.rn = abs(par.theta[0])          #readnoise control constant multiply in readnoise
+        par.tr = abs(par.theta[1])          #throughput control constant (maybe shape) multiply in get_transmission_gal
+        par.st = abs(par.theta[2])          #throughput control constant (maybe shape) multiply in sky_photons
 
 
         self.survey_grid(par.instrument_wavelength_range[0], par.instrument_wavelength_range[1], par.instrument_num_pixels)
