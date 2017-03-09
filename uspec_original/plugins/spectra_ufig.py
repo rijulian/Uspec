@@ -110,6 +110,7 @@ class Plugin(object):
 
 
         # conduct PCA and save the results in fits file
+        '''
         sample_reconstruction, sample_vecs, sample_coeffs  = pri.pca_sample(WPCA, spec_pca, ncomp=5)
         vecs_pca = np.zeros((len(sample_vecs[0]),len(spec_pca[0][:quarters_len])))
         recon_pca = np.zeros((len(nine_gals),len(spec_pca[0][:quarters_len])))
@@ -143,7 +144,7 @@ class Plugin(object):
         hdu_lam = pf.BinTableHDU.from_columns(cols)
         hdulist = pf.HDUList([hdu_primary, hdu_data, hdu_lam])
         hdulist.writeto("uspec_compare/uspec.fits", overwrite=True)
-
+        '''
 
         ###########
         #  PLOTS  #
