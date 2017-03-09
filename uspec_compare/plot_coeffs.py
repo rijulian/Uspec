@@ -1,45 +1,12 @@
 #! /usr/bin/env python
 # Copyright (C) 2016 ETH Zurich, rijulian@phys.ethz.ch
 #
-# This file creates plots and histograms of pca coefficients
+# This file determines angles and areas of the scatter plot of pca coefficients
 #
 # System imports
 import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib.patches import Ellipse
-
-
-def coeff_histo(data_coeffs, sim_coeffs, same_pca=False, wrt=None):
-    '''
-    Plot histograms of the first five PCA coefficients of the data set and simulated set spectra
-
-    :param data_coeffs: First five coefficients of all data set spectra
-    :param sim_coeffs: First five coefficients of all simulated set spectra
-    :param same_pca: If 'True', both sets of coefficients were generated with same principal vectors
-    :param wrt: If same_pca='True', name of set of basis galaxy spectra
-    '''
-    fig, a = plt.subplots(3, 2, figsize=(20, 6))
-    a = a.ravel()
-    for idx, ax in enumerate(a):
-        if(idx != 5):
-            ax.hist(data_coeffs[:,idx], bins=np.linspace(-50,50,100), alpha=0.5, label='SDSS coefficients')
-            ax.hist(sim_coeffs[:,idx], bins=np.linspace(-50,50,100), alpha=0.5, label='Uspec coefficients')
-            if(idx > 2):
-                ax.set_xlabel('Coefficients')
-            if(idx < 3):
-                ax.xaxis.set_major_formatter(plt.NullFormatter())
-            ax.set_ylabel('Count')
-            ax.set_title('%s. Coefficient'%(idx+1))
-            ax.legend(loc='best')
-        else:
-            ax.axis('off')
-    if (same_pca == True):
-        plt.suptitle('First five principal coefficients (both wrt %s principal components)'%wrt, fontsize=16)
-        plt.savefig("plots/plots_both/histo_coeff_%s.pdf"%wrt)
-    else:
-        plt.suptitle('First five principal coefficients', fontsize=16)
-        plt.savefig("plots/plots_both/histo_coeff.pdf")
-    plt.show()
 
 
 def coeff_scatter(coeffs, name, graphic=True ,comp=False, coeffs2=None, name2=None, kcorrect=False):
