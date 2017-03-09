@@ -18,9 +18,7 @@ import numpy as np
 from uspec.plugins.filter_catalog import *
 
 from ivy.plugin.base_plugin import BasePlugin
-#from darkskysync.DarkSkySync import DarkSkySync
 from clerk.catalog import FitsCatalog
-#from clerk.filters import FieldFilter
 
 class Plugin(BasePlugin):
     
@@ -148,7 +146,7 @@ class Plugin(BasePlugin):
         self.read_sdss_throughput(par.lam, par.sdss_throughput_filename)
         
         # sdss sky
-        sdss_sky_filename = 'uspec/data/spPlate-4412-55912.fits'
+        sdss_sky_filename = 'uspec/data/DR13/spPlate-4412-55912.fits'
         self.read_sdss_sky(par.lam, sdss_sky_filename)
         
         # extinction
@@ -157,7 +155,6 @@ class Plugin(BasePlugin):
 
         # survey parameters
         par.instrument_wavelength_range = [3650., 10400.]    #boss
-        #par.instrument_wavelength_range = [3800., 9200.]    #sdss
         
         par.survey_exposure_time            = 2700.     #sec per plate (approx 45 min)
         par.instrument_num_pixels 	        = 4649.     #see sdss files
